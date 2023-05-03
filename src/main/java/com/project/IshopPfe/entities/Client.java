@@ -77,9 +77,7 @@ public  abstract  class Client {
         this.email = email;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
-    private Set<Annonce> annonces=new HashSet<>();
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Set<Commande> commandes=new HashSet<>();

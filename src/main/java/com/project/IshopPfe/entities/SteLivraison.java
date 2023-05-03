@@ -20,38 +20,25 @@ public class SteLivraison {
     private String intitule;
     private String adresse;
     private String email;
-    @OneToOne(cascade = CascadeType.ALL)
-    @NotFound(action= NotFoundAction.IGNORE)
-    @JoinColumn(name = "commandeId", referencedColumnName = "id")
-    private Commande commande;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Livraison> livraisons=new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<Commande> commandes=new HashSet<>();
 
 
     public SteLivraison() {
     }
 
-    public SteLivraison(Long refSociete, int tel, String matriculeFiscale, String intitule, String adresse, String email, Commande commande) {
+    public SteLivraison
+            (Long refSociete, int tel, String matriculeFiscale, String intitule, String adresse, String email) {
         this.refSociete = refSociete;
         this.tel = tel;
         this.matriculeFiscale = matriculeFiscale;
         this.intitule = intitule;
         this.adresse = adresse;
         this.email = email;
-
     }
 
-    public SteLivraison(Long refSociete, int tel, String matriculeFiscale, String intitule, String adresse, String email) {
-        this.refSociete = refSociete;
-        this.tel = tel;
-        this.matriculeFiscale = matriculeFiscale;
-        this.intitule = intitule;
-        this.adresse = adresse;
-        this.email = email;
-        this.commande = commande;
-        this.livraisons = livraisons;
-    }
+
 
     public Long getId() {
         return id;
@@ -59,5 +46,61 @@ public class SteLivraison {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getRefSociete() {
+        return refSociete;
+    }
+
+    public void setRefSociete(Long refSociete) {
+        this.refSociete = refSociete;
+    }
+
+    public int getTel() {
+        return tel;
+    }
+
+    public void setTel(int tel) {
+        this.tel = tel;
+    }
+
+    public String getMatriculeFiscale() {
+        return matriculeFiscale;
+    }
+
+    public void setMatriculeFiscale(String matriculeFiscale) {
+        this.matriculeFiscale = matriculeFiscale;
+    }
+
+    public String getIntitule() {
+        return intitule;
+    }
+
+    public void setIntitule(String intitule) {
+        this.intitule = intitule;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Set<Commande> getCommandes() {
+        return commandes;
+    }
+
+    public void setCommandes(Set<Commande> commandes) {
+        this.commandes = commandes;
     }
 }

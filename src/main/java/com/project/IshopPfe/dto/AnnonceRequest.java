@@ -3,18 +3,18 @@ package com.project.IshopPfe.dto;
 import java.sql.Date;
 
 public class AnnonceRequest {
-    private Long IdClient;
-    private Date Creation;
-    private Date maj;
-    private String nomAnnonce;
-    private Long IdSousCategory;
+    public Long IdClient;
+    public Date Creation;
+    public Date maj;
+    public String nomAnnonce;
+    public Long ProduitId;
 
-    public AnnonceRequest(Long idClient, Date creation, Date maj, String nomAnnonce, Long idSousCategory) {
+    public AnnonceRequest(Long idClient, Date creation, Date maj, String nomAnnonce, Long ProduitId) {
         IdClient = idClient;
         Creation = creation;
         this.maj = maj;
         this.nomAnnonce = nomAnnonce;
-        IdSousCategory = idSousCategory;
+        ProduitId = ProduitId;
     }
 
     public Long getIdClient() {
@@ -49,11 +49,4 @@ public class AnnonceRequest {
         this.nomAnnonce = nomAnnonce;
     }
 
-    public Long getIdSousCategory() {
-        return IdSousCategory;
-    }
-
-    public void setIdSousCategory(Long idSousCategory) {
-        IdSousCategory = idSousCategory;
-    }
 }

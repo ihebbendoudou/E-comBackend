@@ -18,10 +18,9 @@ public class Coupon {
     private int pourcentage;
     @ManyToOne
     public Magasin magasin;
+
     @OneToMany
     public Set<Produit> produits= new HashSet();
-
-
 
 
 

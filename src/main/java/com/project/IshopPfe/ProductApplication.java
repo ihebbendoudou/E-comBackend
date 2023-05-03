@@ -10,12 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@ComponentScan
+@ComponentScan("com.project.IshopPfe")
 @SpringBootApplication
 @EnableJpaRepositories
 public class ProductApplication  implements CommandLineRunner {
     @Autowired(required=true)
-   private final InternautService service;
+    private final InternautService service;
 
     public ProductApplication(InternautService service) {
         this.service = service;
@@ -30,7 +30,7 @@ public class ProductApplication  implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-      // CreateInternauteRequest internaute= new CreateInternauteRequest(5215L,"pass","iheb","iheb@iheb","ali","lazher");
-      // service.save(internaute);
+        // CreateInternauteRequest internaute= new CreateInternauteRequest(5215L,"pass","iheb","iheb@iheb","ali","lazher");
+        // service.save(internaute);
     }
 }

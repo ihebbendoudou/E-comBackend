@@ -22,16 +22,17 @@ public class Commande {
         this.steLivraison = steLivraison;
     }
 
-    @OneToOne(mappedBy = "commande")
-    @NotFound(action= NotFoundAction.IGNORE)
+    @ManyToOne()
+    @NotFound(action = NotFoundAction.IGNORE)
     private SteLivraison steLivraison;
-    public Commande(Long refCommande, Double prix, SteLivraison steLivraison, int qunatite, Client client, Annonce annonce) {
+
+    public Commande(Long refCommande, Double prix, SteLivraison steLivraison, int qunatite, Client client, Produit produit) {
         RefCommande = refCommande;
         this.prix = prix;
         this.steLivraison = steLivraison;
         this.qunatite = qunatite;
         this.client = client;
-        this.annonce = annonce;
+        this.produit = produit;
     }
 
     public Commande() {
@@ -69,12 +70,13 @@ public class Commande {
         this.client = client;
     }
 
-    public Annonce getAnnonce() {
-        return annonce;
+
+    public Produit getProduit() {
+        return produit;
     }
 
-    public void setAnnonce(Annonce annonce) {
-        this.annonce = annonce;
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 
     private int qunatite;
@@ -82,8 +84,8 @@ public class Commande {
     private Client client;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "annonceId", referencedColumnName = "id")
-    private Annonce  annonce;
+    @JoinColumn(name = "produitId", referencedColumnName = "id")
+    private Produit  produit;
 
 
 

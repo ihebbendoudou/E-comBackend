@@ -26,6 +26,10 @@ public class ProduitController {
     public Produit udpate(@RequestBody ProduitRequest request){
         return produitService.updateProduit(request);
     }
+    @PostMapping (value = "/create")
+    public Produit create(@RequestBody ProduitRequest request){
+        return produitService.saveProduit(request);
+    }
     @DeleteMapping (value = "/delete/{id}")
     public  void delete(@PathVariable Long id){
          produitService.deleteProduitById(id);

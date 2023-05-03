@@ -11,28 +11,19 @@ public class Livraison {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
-    private int idLivraison;
     private Date dateLivraison;
     private double solde;
     @ManyToOne
     private SteLivraison steLivraison;
     public Livraison(){}
 
-    public Livraison(int idLivraison, Date dateLivraison, double solde, SteLivraison steLivraison) {
-        this.idLivraison = idLivraison;
+    public Livraison( Date dateLivraison, double solde, SteLivraison steLivraison) {
         this.dateLivraison = dateLivraison;
         this.solde = solde;
         this.steLivraison = steLivraison;
     }
 
-    public int getIdLivraison() {
-        return idLivraison;
-    }
 
-    public void setIdLivraison(int idLivraison) {
-        this.idLivraison = idLivraison;
-    }
 
     public Date getDateLivraison() {
         return dateLivraison;

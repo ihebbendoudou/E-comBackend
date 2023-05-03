@@ -46,5 +46,10 @@ public class MagasinController {
    public boolean login(@RequestBody CreateMagasinRequest request){
     return service.LoginMagasin(request.getEmail(),request.getPassword());
     }
+    @PostMapping(value = "/createmagasin")
+   public Magasin updateMagasin(@RequestBody CreateMagasinRequest request){
+        return service.createMagasin(request);
     }
+
+}
 

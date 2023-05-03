@@ -57,6 +57,17 @@ public class MagasinService {
         magasin.setTel(p.getTel());
          return    magasinRepository.save(magasin);
     }
+    public Magasin createMagasin(CreateMagasinRequest p) {
+        Magasin magasin= new Magasin();
+        magasin.setAdresse(p.getAdresse());
+        magasin.setIntitule(p.getIntitule());
+        magasin.setMatriculeF(p.getMatriculeF());
+        magasin.setEmail(p.getEmail());
+        magasin.setLogin(p.getLogin());
+        magasin.setPassword(p.getPassword());
+        magasin.setTel(p.getTel());
+        return    magasinRepository.save(magasin);
+    }
         public boolean LoginMagasin(String email,String password){
             Magasin user = magasinRepository.findByEmail(email,password);
             if (user == null){
