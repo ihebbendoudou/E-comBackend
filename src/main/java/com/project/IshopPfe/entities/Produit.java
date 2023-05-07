@@ -25,6 +25,10 @@ public class Produit implements Serializable {
     @ManyToOne
     private Client client ;
 
+    @OneToOne(mappedBy = "produit")
+    private Commande  commande;
+
+
     public Coupon getCoupon() {
         return coupon;
     }
@@ -41,18 +45,11 @@ public class Produit implements Serializable {
         this.client = client;
     }
 
-    public Annonce getAnnonce() {
-        return annonce;
-    }
 
-    public void setAnnonce(Annonce annonce) {
-        this.annonce = annonce;
-    }
     @ManyToOne
     @ToString.Exclude
     private sous_category sousCategory;
-    @OneToOne(mappedBy = "produit")
-    private Annonce annonce;
+
     @OneToMany(cascade = CascadeType.ALL)
     private Set<ImageProduit> images=new HashSet<>();
 

@@ -17,7 +17,6 @@ public class ImageProduit implements Serializable {
 
 
     @ManyToOne(cascade = CascadeType.ALL)
-
     @ToString.Exclude
     private Produit produit;
 
