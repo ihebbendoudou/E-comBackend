@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "api/magasin")
 public class MagasinController {
     private final MagasinService service;
@@ -29,8 +30,8 @@ public class MagasinController {
     public Magasin getMagasinByID(@PathVariable Long id){
         return service.getMagasibnById(id);
     }
-    @PostMapping(value = "/createInternaute")
-        public Magasin createInternaute(@RequestBody CreateMagasinRequest request) {
+    @PostMapping(value = "/createMagasin")
+        public Magasin createMagasin(@RequestBody CreateMagasinRequest request) {
         return service.save(request);
 
     }
@@ -42,7 +43,7 @@ public class MagasinController {
         public Magasin updateMagasin(@PathVariable Long id ,@RequestBody CreateMagasinRequest request){
         return service.updateMagasin(id,request);
     }
-   @PostMapping(value = "/loginMagasin/")
+   @PostMapping(value = "/loginMagasin")
    public boolean login(@RequestBody CreateMagasinRequest request){
     return service.LoginMagasin(request.getEmail(),request.getPassword());
     }
