@@ -42,8 +42,8 @@ public class InternauteController {
         return service.updateInternaute(id,request);
     }
    @PostMapping(value = "/loginInternaute")
-   public boolean login(@RequestBody CreateInternauteRequest request){
-    return service.LoginInternaute(request.getEmail(),request.getPassword());
+   public long login(@RequestBody CreateInternauteRequest request){
+        return service.LoginInternaute(request.getEmail(),request.getPassword());
     }
-    }
+}
 

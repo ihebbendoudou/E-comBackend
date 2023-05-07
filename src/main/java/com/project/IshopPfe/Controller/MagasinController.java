@@ -26,7 +26,7 @@ public class MagasinController {
     public List <Magasin> getAll(){
         return service.getAll();
     }
-    @GetMapping(value = "/getIMagasinById/{id}")
+    @GetMapping(value = "/getMagasinById/{id}")
     public Magasin getMagasinByID(@PathVariable Long id){
         return service.getMagasibnById(id);
     }
