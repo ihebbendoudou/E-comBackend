@@ -34,9 +34,8 @@ ClientRepository clientRepository;
                 request.getEmail(),
                 request.getLogin(),
                 request.getAdresse(),
-                request.getMatriculeF(),
-                request.getIntitule()
-
+                request.getIntitule(),
+                request.getMatriculeF()
         );
         return  magasinRepository.save(magasin);
     }
