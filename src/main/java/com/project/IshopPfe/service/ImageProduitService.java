@@ -22,38 +22,45 @@ public class ImageProduitService {
     ProduitRepository produitRepository;
 
 
-    public ImageProduit saveImageProduit(ImageProduitRequest p) {
-        Produit sc = produitRepository.findById(p.idProduit).get();
-        ImageProduit img= new ImageProduit();
-        img.setPath(p.libelle);
-        img.setProduit(sc);
-        return imageProduitRepository.save(img);
 
 
-    } public ImageProduit updateImageProduit(ImageProduitRequest p) {
-        Produit sc = produitRepository.findById(p.idProduit).get();
-        ImageProduit img= new ImageProduit();
-        img.setPath(p.libelle);
-        img.setProduit(sc);
-        return imageProduitRepository.save(img);
 
 
-    }
-    public void deleteProduit(ImageProduit p) {
-        imageProduitRepository.delete(p);
 
-    }
-    public void deleteProduitById(Long id) {
-        imageProduitRepository.deleteById(id);
-    }
-    public ImageProduit getImage(Long id) {
-        return imageProduitRepository.findById(id).get();
-    }
-    public List<ImageProduit> getAllProduits() {
-        return (List<ImageProduit>) imageProduitRepository.findAll();
-    }
-    public List <ImageProduit> getProduitByProduitId(Long id) {
-        return imageProduitRepository.findByProduit_id(id);
-    }
+
+//
+//    public ImageProduit saveImageProduit(ImageProduitRequest p) {
+//        Produit sc = produitRepository.findById(p.idProduit).get();
+//        ImageProduit img= new ImageProduit();
+//        img.setPath(p.libelle);
+//        img.setProduit(sc);
+//        return imageProduitRepository.save(img);
+//
+//
+//    } public ImageProduit updateImageProduit(ImageProduitRequest p) {
+//        Produit sc = produitRepository.findById(p.idProduit).get();
+//        ImageProduit img= new ImageProduit();
+//        img.setPath(p.libelle);
+//        img.setProduit(sc);
+//        return imageProduitRepository.save(img);
+//
+//
+//    }
+//    public void deleteProduit(ImageProduit p) {
+//        imageProduitRepository.delete(p);
+//
+//    }
+//    public void deleteProduitById(Long id) {
+//        imageProduitRepository.deleteById(id);
+//    }
+//    public ImageProduit getImage(Long id) {
+//        return imageProduitRepository.findById(id).get();
+//    }
+//    public List<ImageProduit> getAllProduits() {
+//        return (List<ImageProduit>) imageProduitRepository.findAll();
+//    }
+//    public List <ImageProduit> getProduitByProduitId(Long id) {
+//        return imageProduitRepository.findByProduit_id(id);
+//    }
 
 }
