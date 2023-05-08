@@ -31,8 +31,8 @@ ClientRepository clientRepository;
         Magasin magasin = new Magasin(
                 request.getTel(),
                 request.getPassword(),
-                request.getLogin(),
                 request.getEmail(),
+                request.getLogin(),
                 request.getAdresse(),
                 request.getMatriculeF(),
                 request.getIntitule()
