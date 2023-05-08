@@ -6,8 +6,7 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Table(name = "produit")
 @Entity(name = "produit")
@@ -45,15 +44,30 @@ public class Produit implements Serializable {
         this.client = client;
     }
 
+    public Commande getCommande() {
+        return commande;
+    }
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
+    }
+
+    public List<ImageProduit> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ImageProduit> images) {
+        this.images = images;
+    }
 
     @ManyToOne
     @ToString.Exclude
     private sous_category sousCategory;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<ImageProduit> images=new HashSet<>();
+    @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL)
+    private List<ImageProduit> images = new ArrayList<>();
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -93,31 +107,8 @@ public class Produit implements Serializable {
         this.sousCategory = sousCategory;
     }
 
-    public Set<ImageProduit> getImages() {
-        return images;
-    }
 
-    public void setImages(Set<ImageProduit> images) {
-        this.images = images;
-    }
 
-    public Produit(String labelle, double prix, String description, Coupon coupon, Client client, sous_category sousCategory, Set<ImageProduit> images) {
-        this.labelle = labelle;
-        this.prix = prix;
-        this.description = description;
-        this.coupon = coupon;
-        this.client = client;
-        this.sousCategory = sousCategory;
-        this.images = images;
-    }
-
-    public Produit(String labelle, double prix, String description, sous_category sousCategory, Set<ImageProduit> images) {
-        this.labelle = labelle;
-        this.prix = prix;
-        this.description = description;
-        this.sousCategory = sousCategory;
-        this.images = images;
-    }
 
     public Produit(){}
 }

@@ -2,9 +2,9 @@ package com.project.IshopPfe.entities;
 
 import jakarta.persistence.*;
 import lombok.ToString;
-import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 @Entity(name = "imageProduit")
 @Table(name = "imageProduit")
@@ -16,12 +16,12 @@ public class ImageProduit implements Serializable {
     private Long id;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "produit_id")
     private Produit produit;
 
-    String path;
 
+    private String path;
 
     public Produit getProduit() {
         return produit;
@@ -34,28 +34,13 @@ public class ImageProduit implements Serializable {
     public String getPath() {
         return path;
     }
-
     public void setPath(String path) {
         this.path = path;
     }
-
-    public ImageProduit(Produit produit, String path) {
-        this.produit = produit;
-        this.path = path;
-    }
     public ImageProduit(){}
-
-
-    public ImageProduit(Long id, Produit produit, String path) {
-        this.id = id;
-        this.produit = produit;
-        this.path = path;
-    }
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }

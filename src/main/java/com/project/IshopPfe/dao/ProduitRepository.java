@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository(value = "produitRepo")
 public interface ProduitRepository extends CrudRepository<Produit,Long> {
 
-       @Query("select p from produit p where p.labelle = ?1")
+    public Produit findFirstByOrderByIdDesc();
+
+    @Query("select p from produit p where p.labelle = ?1")
        public Produit findByLabelle(String nom);
 }

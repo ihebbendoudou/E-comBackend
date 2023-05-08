@@ -1,5 +1,7 @@
 package com.project.IshopPfe.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProduitRequest {
 
     public String lebelle;
