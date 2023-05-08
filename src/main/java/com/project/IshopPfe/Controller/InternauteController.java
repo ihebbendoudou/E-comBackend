@@ -25,7 +25,7 @@ public class InternauteController {
         return service.getAll();
     }
     @GetMapping(value = "/getInternabyteById/{id}")
-    public Internaute getInternauteByID(@PathVariable Long id){
+    public Internaute getInternauteByID(@PathVariable long id){
         return service.getInternauteById(id);
     }
     @PostMapping(value = "/createInternaute")
@@ -34,16 +34,17 @@ public class InternauteController {
 
     }
     @DeleteMapping (value = "/deleteInternauteByID")
-        public void deleteInternauteByID(@PathVariable Long id){
+        public void deleteInternauteByID(@PathVariable long id){
          service.deleteInternautebyId(id);
     }
     @PutMapping(value = "/updateInternaute/{id}")
-        public Internaute updateInternaute(@PathVariable Long id ,@RequestBody CreateInternauteRequest request){
+        public Internaute updateInternaute(@PathVariable long id ,@RequestBody CreateInternauteRequest request){
         return service.updateInternaute(id,request);
     }
    @PostMapping(value = "/loginInternaute")
    public long login(@RequestBody CreateInternauteRequest request){
         return service.LoginInternaute(request.getEmail(),request.getPassword());
     }
+
 }
 

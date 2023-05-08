@@ -9,12 +9,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository("magasinRepo")
 public interface MagasinRepository extends JpaRepository<Magasin, Long>   {
-    @Query(
-            value = "SELECT * FROM client e , magasin m " +
-                    "WHERE e.email = :email " +
-                    "AND e.password= :password and e.id = m.id " ,
-            nativeQuery = true
-    )
-    public Magasin findByEmail(@Param("email") String email,
-                                  @Param("password") String password);
+//    @Query(
+//            value = "SELECT * FROM client e , magasin m " +
+//                    "WHERE e.email = :email " +
+//                    "AND e.password= :password and e.id = m.id " ,
+//            nativeQuery = true
+//    )
+//    public Magasin findByEmail(@Param("email") String email,
+//                                  @Param("password") String password);
+
+    public Magasin findByEmailAndPassword(String email,String password);
 }

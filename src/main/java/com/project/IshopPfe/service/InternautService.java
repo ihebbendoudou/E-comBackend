@@ -1,8 +1,11 @@
 package com.project.IshopPfe.service;
 
+import com.project.IshopPfe.dao.ClientRepository;
 import com.project.IshopPfe.dao.InternautRepository;
 import com.project.IshopPfe.dto.CreateInternauteRequest;
+import com.project.IshopPfe.entities.Client;
 import com.project.IshopPfe.entities.Internaute;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +13,8 @@ import java.util.List;
 @Service
 public class InternautService {
 
-
+@Autowired
+    ClientRepository clientRepository;
     private final InternautRepository internautRepository;
 
     public InternautService(InternautRepository internautRepository) {
@@ -33,16 +37,16 @@ public class InternautService {
         return  internautRepository.save(internaute);
     }
 
-    public Internaute getInternauteById(Long id) {
+    public Internaute getInternauteById(long id) {
        return internautRepository.findById(id).get();
     }
     public void deleteInternaute(Internaute request) {
            internautRepository.delete(request);
     }
-    public void deleteInternautebyId(Long id) {
+    public void deleteInternautebyId(long id) {
         internautRepository.deleteById(id);
     }
-    public Internaute updateInternaute(Long id,CreateInternauteRequest p) {
+    public Internaute updateInternaute(long id,CreateInternauteRequest p) {
         Internaute internaute= internautRepository.findById(id).get();
             internaute.setNom(p.getNom());
             internaute.setPrenom(p.getPrenom());
@@ -52,12 +56,20 @@ public class InternautService {
             internaute.setTel(p.getTel());
          return    internautRepository.save(internaute);
     }
+
         public long LoginInternaute(String email,String password){
-            Internaute user = internautRepository.findByEmail(email,password);
+            Client user = internautRepository.findByEmailAndPassword(email,password);
             if (user == null){
                 return 0;
             } else return user.getId();
         }
+
+    public long LoginClient(String email,String password){
+        Client user = clientRepository.findByEmailAndPassword(email,password);
+        if (user == null){
+            return 0;
+        } else return user.getId();
+    }
 
 
 
