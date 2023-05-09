@@ -11,6 +11,10 @@ import com.project.IshopPfe.entities.sous_category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,7 +26,17 @@ public class ImageProduitService {
     ProduitRepository produitRepository;
 
 
+    public List<byte[]> getImagesByProductId(Long productId) throws IOException {
+        List<ImageProduit> images = imageProduitRepository.findByProduit(productId);
+        List<byte[]> imageDataList = new ArrayList<>();
 
+        for (ImageProduit image : images) {
+            byte[] imageData = Files.readAllBytes(Paths.get(image.getPath()));
+            imageDataList.add(imageData);
+        }
+
+        return imageDataList;
+    }
 
 
 
