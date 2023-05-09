@@ -27,7 +27,7 @@ public class ImageProduitService {
 
 
     public List<byte[]> getImagesByProductId(Long productId) throws IOException {
-        List<ImageProduit> images = imageProduitRepository.findByProduit(productId);
+        List<ImageProduit> images = imageProduitRepository.findByProduit_id(productId);
         List<byte[]> imageDataList = new ArrayList<>();
 
         for (ImageProduit image : images) {
@@ -38,8 +38,9 @@ public class ImageProduitService {
         return imageDataList;
     }
 
-
-
+    public List<ImageProduit> getImagesByProductId1(long productId) {
+        return imageProduitRepository.findByProduit_id(productId);
+    }
 
 
 //

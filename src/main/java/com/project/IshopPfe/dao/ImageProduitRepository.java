@@ -12,11 +12,11 @@ import java.util.List;
 @Repository(value = "ImageProduitRepo")
 public interface ImageProduitRepository extends JpaRepository <ImageProduit,Long>{
 
-   // public List<ImageProduit> findByProduit_id(Long id);
+   @Query("select i from imageProduit i where i.produit.id = ?1")
+   public List<ImageProduit> findByProduit_id(Long id);
 
-
-    @Query(value = "select * from imageProduit s where s.produit_id = :id1" ,
-            nativeQuery = true)
+    @Query(value = "select s.path from image_produit s where s.produit_id = :id1" ,
+           nativeQuery = true)
    public List<ImageProduit> findByProduit(@Param("id1") Long productId);
 
 }

@@ -1,6 +1,7 @@
 package com.project.IshopPfe.Controller;
 
 import com.project.IshopPfe.dao.ImageProduitRepository;
+import com.project.IshopPfe.entities.ImageProduit;
 import com.project.IshopPfe.service.ImageProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,4 +30,10 @@ public class ImageProduitController {
 
         return encodedImageDataList;
     }
+
+    @GetMapping(value = "/imageProd1/{productId}")
+    public List<ImageProduit> getImByIdProd(@PathVariable long productId) throws IOException {
+        return imageService.getImagesByProductId1(productId);
+    }
+
 }
