@@ -15,9 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -57,15 +54,18 @@ public class ProduitController {
     }
 
     @PostMapping(value = "/upload-images")
-    public ResponseEntity<String> uploadImages(@RequestParam("myFiles") List<MultipartFile> images) {
+   public ResponseEntity<String> uploadImages(@RequestParam("myFiles") List<MultipartFile> images) {
+        Produit produit= produitRepository.findById(getLastProductId()).get();
+
+
         try {
             for (MultipartFile image : images) {
                 byte[] imageData = image.getBytes();
                 String fileName = image.getOriginalFilename();
-                ImageProduit im = new ImageProduit();
-                im.setPath(fileName);
-                im.setProduit(produitRepository.findById(getLastProductId()).get());
-                imageProduitRepository.save(im);
+                ImageProduit im1 = new ImageProduit();
+                im1.setPath(fileName);
+                im1.setProduit(produit);
+                imageProduitRepository.save(im1);
 
                 File file = new File("src/main/resources/produits/" + fileName);
                 FileOutputStream fos = new FileOutputStream(file);
