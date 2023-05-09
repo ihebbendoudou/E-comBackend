@@ -45,7 +45,7 @@ public class ProduitService {
         Produit produit= new Produit();
         produit.setSousCategory(sc);
         produit.setDescription(p.description);
-        produit.setLabelle(p.lebelle);
+        produit.setLabelle(p.labelle);
         produit.setPrix(p.prix);
         produit.setClient(client);
         return produitRepository.save(produit);
@@ -58,7 +58,7 @@ public class ProduitService {
         Produit produit= new Produit();
         produit.setSousCategory(sc);
         produit.setDescription(p.description);
-        produit.setLabelle(p.lebelle);
+        produit.setLabelle(p.labelle);
         produit.setPrix(p.prix);
        return produitRepository.save(produit);
 
