@@ -1,13 +1,16 @@
 package com.project.IshopPfe.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.ToString;
+
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Table(name = "produit")
 @Entity(name = "produit")
@@ -19,13 +22,16 @@ public class Produit implements Serializable {
     private String labelle;
     private double prix;
     private String description;
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @NotFound(action= NotFoundAction.IGNORE)
     private Coupon coupon;
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     private Client client ;
+    @JsonIgnore
 
-    @OneToOne(mappedBy = "produit")
+    @OneToOne(mappedBy = "produit",fetch = FetchType.EAGER)
     private Commande  commande;
 
 
@@ -45,15 +51,41 @@ public class Produit implements Serializable {
         this.client = client;
     }
 
+    public Commande getCommande() {
+        return commande;
+    }
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
+    }
+
+    public List<ImageProduit> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ImageProduit> images) {
+        this.images = images;
+    }
 
     @ManyToOne
     @ToString.Exclude
     private sous_category sousCategory;
+    @JsonIgnore
+    @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
+    private List<ImageProduit> images = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<ImageProduit> images=new HashSet<>();
+    public int getStatut() {
+        return statut;
+    }
 
-    public Long getId() {
+    public void setStatut(int statut) {
+        this.statut = statut;
+    }
+
+    @Value("${some.key:0}")
+    private int statut;
+
+    public long getId() {
         return id;
     }
 
@@ -93,31 +125,18 @@ public class Produit implements Serializable {
         this.sousCategory = sousCategory;
     }
 
-    public Set<ImageProduit> getImages() {
-        return images;
+    @JsonIgnore
+    @OneToOne(mappedBy = "produit",fetch = FetchType.EAGER)
+    private Annonce annonce;
+
+    public Annonce getAnnonce() {
+        return annonce;
     }
 
-    public void setImages(Set<ImageProduit> images) {
-        this.images = images;
+    public void setAnnonce(Annonce annonce) {
+        this.annonce = annonce;
     }
 
-    public Produit(String labelle, double prix, String description, Coupon coupon, Client client, sous_category sousCategory, Set<ImageProduit> images) {
-        this.labelle = labelle;
-        this.prix = prix;
-        this.description = description;
-        this.coupon = coupon;
-        this.client = client;
-        this.sousCategory = sousCategory;
-        this.images = images;
-    }
-
-    public Produit(String labelle, double prix, String description, sous_category sousCategory, Set<ImageProduit> images) {
-        this.labelle = labelle;
-        this.prix = prix;
-        this.description = description;
-        this.sousCategory = sousCategory;
-        this.images = images;
-    }
 
     public Produit(){}
 }

@@ -1,7 +1,7 @@
 package com.project.IshopPfe.dto;
 
 public class CreateInternauteRequest {
-    private Long tel;
+    private long tel;
     private String password;
     private String login;
     private String email;
@@ -14,7 +14,7 @@ public class CreateInternauteRequest {
 
     public CreateInternauteRequest(){}
 
-    public CreateInternauteRequest(Long tel, String password, String login, String email, String nom, String prenom) {
+    public CreateInternauteRequest(long tel, String password, String login, String email, String nom, String prenom) {
         this.tel = tel;
         this.password = password;
         this.login = login;
@@ -23,7 +23,7 @@ public class CreateInternauteRequest {
         this.prenom = prenom;
     }
 
-    public Long getTel() {
+    public long getTel() {
         return tel;
     }
 

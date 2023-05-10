@@ -26,7 +26,7 @@ public class MagasinController {
     public List <Magasin> getAll(){
         return service.getAll();
     }
-    @GetMapping(value = "/getIMagasinById/{id}")
+    @GetMapping(value = "/getMagasinById/{id}")
     public Magasin getMagasinByID(@PathVariable Long id){
         return service.getMagasibnById(id);
     }
@@ -44,7 +44,7 @@ public class MagasinController {
         return service.updateMagasin(id,request);
     }
    @PostMapping(value = "/loginMagasin")
-   public boolean login(@RequestBody CreateMagasinRequest request){
+   public long login(@RequestBody CreateMagasinRequest request){
     return service.LoginMagasin(request.getEmail(),request.getPassword());
     }
     @PostMapping(value = "/createmagasin")

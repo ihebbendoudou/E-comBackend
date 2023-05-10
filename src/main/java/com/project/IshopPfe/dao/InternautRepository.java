@@ -14,6 +14,9 @@ public interface InternautRepository extends JpaRepository<Internaute, Long>   {
                     "AND e.password= :password and e.id = i.id " ,
             nativeQuery = true
     )
-    public Internaute findByEmail(@Param("email") String email,
+    public Internaute findByEmailetPass(@Param("email") String email,
                                   @Param("password") String password);
+
+    @Query("select i from internaute i where i.email = ?1 and i.password = ?2")
+    public Internaute findByEmailAndPassword(String email, String password);
 }

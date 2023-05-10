@@ -8,6 +8,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "api/SousCategory")
 public class SousCategoryController {
     private final SousCategoryService service;

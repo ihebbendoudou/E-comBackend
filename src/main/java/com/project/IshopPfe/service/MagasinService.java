@@ -1,9 +1,13 @@
 package com.project.IshopPfe.service;
 
+import com.project.IshopPfe.dao.ClientRepository;
 import com.project.IshopPfe.dao.MagasinRepository;
 import com.project.IshopPfe.dto.CreateMagasinRequest;
+import com.project.IshopPfe.entities.Client;
 import com.project.IshopPfe.entities.Internaute;
 import com.project.IshopPfe.entities.Magasin;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.AccessType;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +15,8 @@ import java.util.List;
 @Service
 public class MagasinService {
 
-
+@Autowired
+ClientRepository clientRepository;
     private final MagasinRepository magasinRepository;
 
     public MagasinService(MagasinRepository magasinRepository) {
@@ -26,12 +31,11 @@ public class MagasinService {
         Magasin magasin = new Magasin(
                 request.getTel(),
                 request.getPassword(),
-                request.getLogin(),
                 request.getEmail(),
+                request.getLogin(),
                 request.getAdresse(),
-                request.getMatriculeF(),
-                request.getIntitule()
-
+                request.getIntitule(),
+                request.getMatriculeF()
         );
         return  magasinRepository.save(magasin);
     }
@@ -68,12 +72,19 @@ public class MagasinService {
         magasin.setTel(p.getTel());
         return    magasinRepository.save(magasin);
     }
-        public boolean LoginMagasin(String email,String password){
-            Magasin user = magasinRepository.findByEmail(email,password);
+        public long LoginMagasin(String email,String password){
+            Magasin user = magasinRepository.findByEmailAndPassword(email,password);
             if (user == null){
-                return false;
-            } else return true;
+                return 0;
+            } else return user.getId();
         }
+
+    public long LoginClient(String email,String password){
+        Client user = clientRepository.findByEmailAndPassword(email,password);
+        if (user == null){
+            return 0;
+        } else return user.getId();
+    }
 
 
 
