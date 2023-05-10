@@ -4,11 +4,12 @@ import com.project.IshopPfe.dto.AnnonceRequest;
 import com.project.IshopPfe.entities.Annonce;
 import com.project.IshopPfe.service.AnnonceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 
 @RestController

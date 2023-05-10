@@ -94,13 +94,7 @@ public  abstract  class Client {
         this.produits = produits;
     }
 
-    public Set<Annonce> getAnnonce() {
-        return annonce;
-    }
 
-    public void setAnnonce(Set<Annonce> annonce) {
-        this.annonce = annonce;
-    }
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -110,8 +104,6 @@ public  abstract  class Client {
     @JoinColumn(name = "client_id")
     private Set<Produit> produits=new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "client")
-    private Set<Annonce> annonce=new HashSet<Annonce>();
 
 
 

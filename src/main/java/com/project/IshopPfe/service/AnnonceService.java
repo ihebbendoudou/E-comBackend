@@ -30,12 +30,10 @@ public class AnnonceService {
     ProduitService produitService;
 
     public Annonce CreateAnnonce(AnnonceRequest p){
-         Client cl= clientRepository.findById(p.IdClient).get();
          Produit produit=produitRepository.findById(p.ProduitId).get();
             produitService.updateSatut(produit);
          Annonce a= new Annonce();
          a.setNomAnnonce(p.nomAnnonce);
-         a.setClient(cl);
          a.setProduit(produit);
 //         a.setDateCreation(p.Creation);
 //         a.setDateMaj(p.maj);
@@ -48,12 +46,9 @@ public class AnnonceService {
 
         public Annonce AnnonceUpdate(long id, AnnonceRequest p) {
         Annonce a=AnnonceRepo.findById(id).get();
-        Client cl= clientRepository.findById(p.IdClient).get();
         Produit produit=produitRepository.findById(p.ProduitId).get();
         a.setNomAnnonce(p.nomAnnonce);
-        a.setClient(cl);
-        a.setDateCreation(p.Creation);
-        a.setDateMaj(p.maj);
+
         return AnnonceRepo.save(a);
 
     }

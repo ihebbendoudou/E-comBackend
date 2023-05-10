@@ -25,10 +25,7 @@ public class Annonce {
     public void setId(Long id) {
         this.id = id;
     }
-        @JsonIgnore
-        @ManyToOne
-        @JoinColumn(name = "client_id",nullable = false)
-        private Client client;
+
         @JsonIgnore
         @OneToOne
         @JoinColumn(name = "produit_id",referencedColumnName = "id")
@@ -43,13 +40,7 @@ public class Annonce {
     public Annonce() {
     }
 
-    public Client getClient() {
-        return client;
-    }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
 
     public Produit getProduit() {
         return produit;
