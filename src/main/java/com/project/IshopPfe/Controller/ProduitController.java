@@ -99,7 +99,10 @@ public class ProduitController {
     }
 
 
-
+    @GetMapping(value = "/getNonAnnonce/{clientId}")
+    public List <Produit>  getNonAnnonce(Long clientId){
+        return produitService.getNonAnnonce(clientId);
+    }
 
 //    @PostMapping (value = "/addP")
 //    public ResponseEntity<Produit> createProduct(@RequestParam ProduitRequest productJson)

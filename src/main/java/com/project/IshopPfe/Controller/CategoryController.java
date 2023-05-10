@@ -31,12 +31,10 @@ public class CategoryController {
     public Category updateCategory(@RequestBody Category category) {
         return service.updateCategory(category);
     }
-
     @DeleteMapping(value = "/deleteCategoryById/{id}")
     public void deleteCategoryById(@PathVariable Long id) {
         service.deleteCategoryById(id);
     }
-
     @DeleteMapping(value = "/delete")
     public void deleteCategory(@RequestBody Category category) {
         service.deleteCategory(category);

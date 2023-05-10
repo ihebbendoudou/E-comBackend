@@ -54,14 +54,18 @@ public class ProduitService {
 
     public Produit updateProduit(ProduitRequest p) {
         sous_category sc = sousCategoryRepository.findById(p.idSousCategory).get();
-
         Produit produit= new Produit();
         produit.setSousCategory(sc);
         produit.setDescription(p.description);
         produit.setLabelle(p.labelle);
         produit.setPrix(p.prix);
+        produit.setStatut(p.Status);
        return produitRepository.save(produit);
 
+    }
+    public void updateSatut(Produit p){
+       p.setStatut(1);
+       produitRepository.save(p);
     }
     public void deleteProduit(Produit p) {
         produitRepository.delete(p);
@@ -122,6 +126,10 @@ public  List<ImageProduit> saveImage(MultipartFile[] imageFiles ) throws IOExcep
         Path source = Paths.get(sourcePath);
         Path target = Paths.get(targetPath);
         Files.move(source, target);
+    }
+
+    public List<Produit> getNonAnnonce(Long clientId) {
+        return produitRepository.getbyStatut(clientId);
     }
 }
 
