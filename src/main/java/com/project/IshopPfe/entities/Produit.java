@@ -1,9 +1,13 @@
 package com.project.IshopPfe.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.ToString;
+
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.io.Serializable;
 import java.util.*;
@@ -18,13 +22,16 @@ public class Produit implements Serializable {
     private String labelle;
     private double prix;
     private String description;
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @NotFound(action= NotFoundAction.IGNORE)
     private Coupon coupon;
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     private Client client ;
+    @JsonIgnore
 
-    @OneToOne(mappedBy = "produit")
+    @OneToOne(mappedBy = "produit",fetch = FetchType.EAGER)
     private Commande  commande;
 
 
@@ -63,9 +70,20 @@ public class Produit implements Serializable {
     @ManyToOne
     @ToString.Exclude
     private sous_category sousCategory;
-
-    @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
     private List<ImageProduit> images = new ArrayList<>();
+
+    public int getStatut() {
+        return statut;
+    }
+
+    public void setStatut(int statut) {
+        this.statut = statut;
+    }
+
+    @Value("${some.key:0}")
+    private int statut;
 
     public long getId() {
         return id;
@@ -107,7 +125,17 @@ public class Produit implements Serializable {
         this.sousCategory = sousCategory;
     }
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "produit",fetch = FetchType.EAGER)
+    private Annonce annonce;
 
+    public Annonce getAnnonce() {
+        return annonce;
+    }
+
+    public void setAnnonce(Annonce annonce) {
+        this.annonce = annonce;
+    }
 
 
     public Produit(){}

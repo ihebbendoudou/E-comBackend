@@ -9,6 +9,7 @@ public class ProduitRequest {
     public double prix;
     public Long idSousCategory;
     public Long idClient;
+    public int Status;
 
 //    public ProduitRequest(String lebelle, String description, double prix, Long idSousCategory,Long idClient) {
 //        this.lebelle = lebelle;
