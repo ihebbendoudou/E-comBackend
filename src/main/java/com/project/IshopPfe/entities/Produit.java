@@ -66,11 +66,10 @@ public class Produit implements Serializable {
     public void setImages(List<ImageProduit> images) {
         this.images = images;
     }
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     @ToString.Exclude
     private sous_category sousCategory;
-    @JsonIgnore
     @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
     private List<ImageProduit> images = new ArrayList<>();
 

@@ -21,10 +21,15 @@ public class SousCategoryService {
 
     public List<sous_category> getAllSousCategory(){
         return (List<sous_category>) sousCategoryRepository.findAll();
-        }
+    }
 
     public List<sous_category> findByCategory(Long id){
         return  sousCategoryRepository.findByCategory_id(id);
+    }
+
+
+    public List<sous_category>getByCatSousCat(){
+        return sousCategoryRepository.findAllByOrderByCategoryAsc();
     }
 
     public sous_category getSousCategoryById(Long id){
@@ -45,10 +50,10 @@ public class SousCategoryService {
     }
 
     public Boolean  deleteSousCategoryByid(Long id){
-       if(id!=null) {
-           sousCategoryRepository.deleteById(id);
-           return true;
-       }else return false;
+        if(id!=null) {
+            sousCategoryRepository.deleteById(id);
+            return true;
+        }else return false;
     }
     public void  deleteSousCategoryByNom(String  nom){
         sous_category objet= sousCategoryRepository.findBynom_sous_category(nom);

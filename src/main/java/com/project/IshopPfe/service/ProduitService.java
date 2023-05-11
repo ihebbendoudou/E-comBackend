@@ -5,11 +5,9 @@ import com.project.IshopPfe.dao.ImageProduitRepository;
 import com.project.IshopPfe.dao.ProduitRepository;
 import com.project.IshopPfe.dao.SousCategoryRepository;
 import com.project.IshopPfe.dto.ProduitRequest;
-import com.project.IshopPfe.entities.Client;
-import com.project.IshopPfe.entities.ImageProduit;
-import com.project.IshopPfe.entities.Produit;
-import com.project.IshopPfe.entities.sous_category;
+import com.project.IshopPfe.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -105,20 +103,6 @@ public  List<ImageProduit> saveImage(MultipartFile[] imageFiles ) throws IOExcep
     return images;
 }
 
-//    public Produit saveProduct(ProduitRequest productDto) throws IOException {
-//        Produit product = new Produit();
-//        product.setLabelle(productDto.lebelle);
-//        product.setDescription(productDto.description);
-//        product.setPrix(productDto.prix);
-//        sous_category sc = sousCategoryRepository.findById(productDto.idSousCategory).get();
-//        Client client = clientRepository.findById(productDto.idClient).get();
-//        product.setClient(client);
-//        product.setSousCategory(sc);
-//
-//        Produit savedProduct = produitRepository.save(product);
-//
-//        return savedProduct;
-//    }
 
     public void moveImageToDirectory(ImageProduit image, String targetDirectory) throws IOException {
         String sourcePath = "src/main/resources/produits" + image.getPath();
@@ -137,6 +121,11 @@ public  List<ImageProduit> saveImage(MultipartFile[] imageFiles ) throws IOExcep
     public long countProdByCLient(Long id){
         return  produitRepository.countByClientId(id);
     }
+
+    public long countNonPublichByClient(Long id ){
+        return produitRepository.countByClientIdAndStaut(id,1);
+    }
+
 }
 
 

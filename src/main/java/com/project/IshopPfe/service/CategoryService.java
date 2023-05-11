@@ -2,16 +2,29 @@ package com.project.IshopPfe.service;
 
 import com.project.IshopPfe.dao.CategoryRepository;
 import com.project.IshopPfe.entities.Category;
+import com.project.IshopPfe.entities.sous_category;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CategoryService {
     private CategoryRepository categoryRepository;
 
+
+
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
+    }
+
+    public List<Category> getAllCategoriesWithSubCategories() {
+        List<Category> categories = categoryRepository.findAll();
+        for (Category category : categories) {
+            Set<sous_category> subCategories = category.getSs_cat();
+            subCategories.size(); // force lazy initialization
+        }
+        return categories;
     }
 
 

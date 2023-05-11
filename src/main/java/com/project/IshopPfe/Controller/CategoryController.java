@@ -43,6 +43,10 @@ public class CategoryController {
     public Category CreateCategory (@RequestBody Category category) {
       return   service.CreateCategory(category);
     }
+    @GetMapping(value = "/getAllCategoriesWithSubCategories")
+    List<Category>getAllCategoriesWithSubCategories(){
+        return service.getAllCategoriesWithSubCategories();
+    }
 
 }
 

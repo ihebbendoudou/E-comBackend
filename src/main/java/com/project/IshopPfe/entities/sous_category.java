@@ -32,7 +32,7 @@ public class sous_category implements Serializable  {
         this.nom_sous_category = nom_sous_category;
     }
     private String nom_sous_category;
-    @Basic(fetch=FetchType.EAGER)
+   @JsonIgnore
     @ManyToOne
      private Category category;
 

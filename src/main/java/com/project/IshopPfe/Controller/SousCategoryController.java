@@ -17,6 +17,10 @@ public class SousCategoryController {
         this.service = service;
     }
 
+    @GetMapping(value = "/getSScatGroupByCat")
+    public List<sous_category> getSScatGroupByCat(){
+        return service.getByCatSousCat();
+    }
     @GetMapping(value = "/getSousCategoryByCategoryID/{id}")
     public List<sous_category> getSousCategoryByCategoryID(@PathVariable Long id) {
         return service.findByCategory(id);
