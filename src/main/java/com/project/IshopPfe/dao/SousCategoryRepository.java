@@ -1,6 +1,7 @@
 package com.project.IshopPfe.dao;
 
 import com.project.IshopPfe.dto.SousCategoryRequest;
+import com.project.IshopPfe.entities.Category;
 import com.project.IshopPfe.entities.sous_category;
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,4 +28,10 @@ public interface SousCategoryRepository extends JpaRepository<sous_category, Lon
 
         @Query("select  new com.project.IshopPfe.entities.sous_category(d.id, d.nom_sous_category) from sous_category d where d.category.id = ?1")
         List<sous_category> getSousCategoryByCategoryIddd(Long id);
+
+        @Query("select s from sous_category s group by s.category.id")
+        List<sous_category> getAllGroupByCategory();
+        @Query("select s from sous_category s order by s.category")
+        List<sous_category> findAllByOrderByCategoryAsc();
+
 }

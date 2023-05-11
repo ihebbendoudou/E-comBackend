@@ -9,6 +9,7 @@ import com.project.IshopPfe.entities.ImageProduit;
 import com.project.IshopPfe.entities.Produit;
 import com.project.IshopPfe.entities.sous_category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -22,8 +23,7 @@ public class ImageProduitService {
 
     @Autowired
     ImageProduitRepository imageProduitRepository;
-    @Autowired
-    ProduitRepository produitRepository;
+
 
 
     public List<byte[]> getImagesByProductId(Long productId) throws IOException {
@@ -43,39 +43,24 @@ public class ImageProduitService {
     }
 
 
-//
-//    public ImageProduit saveImageProduit(ImageProduitRequest p) {
-//        Produit sc = produitRepository.findById(p.idProduit).get();
-//        ImageProduit img= new ImageProduit();
-//        img.setPath(p.libelle);
-//        img.setProduit(sc);
-//        return imageProduitRepository.save(img);
-//
-//
-//    } public ImageProduit updateImageProduit(ImageProduitRequest p) {
-//        Produit sc = produitRepository.findById(p.idProduit).get();
-//        ImageProduit img= new ImageProduit();
-//        img.setPath(p.libelle);
-//        img.setProduit(sc);
-//        return imageProduitRepository.save(img);
-//
-//
+//    public ResponseEntity<byte[]> getProductImages(Long productId) {
+//        String imagePath = "product/" + productId + "/" + imageName;
+//        ClassPathResource imgFile = new ClassPathResource(imagePath);
+//        if (!imgFile.exists()) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        byte[] bytes = StreamUtils.copyToByteArray(imgFile.getInputStream());
+//        return ResponseEntity
+//                .ok()
+//                .contentType(MediaType.IMAGE_JPEG)
+//                .body(bytes);
 //    }
-//    public void deleteProduit(ImageProduit p) {
-//        imageProduitRepository.delete(p);
 //
+//    public List<String> getImagesNames(Long idProd){
+//        List<String> names=new ArrayList<>();
+//        return .findByProduit();
 //    }
-//    public void deleteProduitById(Long id) {
-//        imageProduitRepository.deleteById(id);
-//    }
-//    public ImageProduit getImage(Long id) {
-//        return imageProduitRepository.findById(id).get();
-//    }
-//    public List<ImageProduit> getAllProduits() {
-//        return (List<ImageProduit>) imageProduitRepository.findAll();
-//    }
-//    public List <ImageProduit> getProduitByProduitId(Long id) {
-//        return imageProduitRepository.findByProduit_id(id);
-//    }
+//
+
 
 }

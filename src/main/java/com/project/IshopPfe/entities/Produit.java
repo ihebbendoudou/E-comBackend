@@ -18,7 +18,7 @@ public class Produit implements Serializable {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String labelle;
     private double prix;
     private String description;
@@ -66,11 +66,10 @@ public class Produit implements Serializable {
     public void setImages(List<ImageProduit> images) {
         this.images = images;
     }
-
+    //@JsonIgnore
     @ManyToOne
     @ToString.Exclude
     private sous_category sousCategory;
-    @JsonIgnore
     @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
     private List<ImageProduit> images = new ArrayList<>();
 
@@ -89,7 +88,7 @@ public class Produit implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -1,6 +1,7 @@
 package com.project.IshopPfe.entities;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.context.annotation.Lazy;
 
@@ -22,6 +23,14 @@ public class Category implements Serializable  {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
    private Set<sous_category> ss_cat=new HashSet<>();
+
+    public Set<sous_category> getSs_cat() {
+        return ss_cat;
+    }
+
+    public void setSs_cat(Set<sous_category> ss_cat) {
+        this.ss_cat = ss_cat;
+    }
 
     public Long getId() {
         return id;

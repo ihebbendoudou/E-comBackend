@@ -1,5 +1,6 @@
 package com.project.IshopPfe.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.ToString;
@@ -31,11 +32,11 @@ public class sous_category implements Serializable  {
         this.nom_sous_category = nom_sous_category;
     }
     private String nom_sous_category;
-    @Basic(fetch=FetchType.EAGER)
+   @JsonIgnore
     @ManyToOne
      private Category category;
 
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Produit> produits=new HashSet<>();
 
