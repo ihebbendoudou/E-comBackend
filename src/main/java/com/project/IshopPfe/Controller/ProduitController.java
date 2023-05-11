@@ -100,14 +100,14 @@ public class ProduitController {
     }
 
 
-    @GetMapping(value = "/getNonAnnonce")
-    public List<Produit> getNonAnnonce(){
-        return produitService.getNonAnnoncer();
+    @GetMapping(value = "/getNonAnnonce/{id}")
+    public List<Produit> getNonAnnonce(@PathVariable Long id){
+        return produitService.getNonAnnoncer(id);
     }
 
-    @GetMapping(value = "/getProduitAnnonce")
-    public List<Produit> getProduitAnnoncer(){
-        return produitService.getProduitAnnoncer();
+    @GetMapping(value = "/getProduitAnnonce/{id}")
+    public List<Produit> getProduitAnnoncer(@PathVariable Long id){
+        return produitService.getProduitAnnoncer(id);
 
     }
 
