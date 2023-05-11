@@ -1,5 +1,6 @@
 package com.project.IshopPfe.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
@@ -18,7 +19,7 @@ public class Coupon {
     private int pourcentage;
     @ManyToOne
     public Magasin magasin;
-
+    @JsonIgnore
     @OneToMany
     public Set<Produit> produits= new HashSet();
 

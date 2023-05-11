@@ -3,6 +3,7 @@ package com.project.IshopPfe.Controller;
 import com.project.IshopPfe.dao.ImageProduitRepository;
 import com.project.IshopPfe.dao.ProduitRepository;
 import com.project.IshopPfe.dto.ProduitRequest;
+import com.project.IshopPfe.entities.Annonce;
 import com.project.IshopPfe.entities.ImageProduit;
 import com.project.IshopPfe.entities.Produit;
 import com.project.IshopPfe.service.ProduitService;
@@ -99,9 +100,15 @@ public class ProduitController {
     }
 
 
-    @GetMapping(value = "/getNonAnnonce/{clientId}")
-    public List <Produit>  getNonAnnonce(Long clientId){
-        return produitService.getNonAnnonce(clientId);
+    @GetMapping(value = "/getNonAnnonce")
+    public List<Produit> getNonAnnonce(){
+        return produitService.getNonAnnoncer();
+    }
+
+    @GetMapping(value = "/getProduitAnnonce")
+    public List<Produit> getProduitAnnoncer(){
+        return produitService.getProduitAnnoncer();
+
     }
 
 //    @PostMapping (value = "/addP")
