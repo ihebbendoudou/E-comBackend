@@ -110,7 +110,10 @@ public class ProduitController {
         return produitService.getProduitAnnoncer(id);
 
     }
-
+    @GetMapping(value = "/CountByIdCLient/{id}")
+    public Long countByClientID(@PathVariable("id") Long id){
+        return produitService.countProdByCLient(id);
+    }
 //    @PostMapping (value = "/addP")
 //    public ResponseEntity<Produit> createProduct(@RequestParam ProduitRequest productJson)
 //            throws IOException {
