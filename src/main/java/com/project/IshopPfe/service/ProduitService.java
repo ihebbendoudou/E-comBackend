@@ -128,9 +128,13 @@ public  List<ImageProduit> saveImage(MultipartFile[] imageFiles ) throws IOExcep
         Files.move(source, target);
     }
 
-    public List<Produit> getNonAnnonce(Long clientId) {
-        return produitRepository.getbyStatut(clientId);
+    public List<Produit> getNonAnnoncer(Long id) {
+        return produitRepository.findByClientIdAndStatut(id,0);
     }
+    public List<Produit> getProduitAnnoncer(Long id) {
+        return produitRepository.findByClientIdAndStatut(id,1);
+    }
+
 }
 
 

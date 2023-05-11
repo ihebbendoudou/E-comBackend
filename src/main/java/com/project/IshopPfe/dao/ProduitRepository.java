@@ -16,13 +16,12 @@ public interface ProduitRepository extends CrudRepository<Produit,Long> {
 
     @Query("select p from produit p where p.labelle = ?1")
        public Produit findByLabelle(String nom);
-//
-//    @Query(value = "select DISTINCT p.* from produit p , annonce a" +
-//            "WHERE p.id not in (select a.id from annonce a) " +
-//            "and p.client_id= :clientId"
-//            , nativeQuery = true)
-//    List<Produit> getProdNonAnnonce(@Param("clientId") Long clientId);
-//
-    @Query(value = "SELECT p.* FROM produit p WHERE p.statut=0 and p.client_id=?1",nativeQuery = true)
-    List<Produit>  getbyStatut(Long idClient);
+
+
+    @Query("select p from produit p where p.statut = ?1 and p.client.id = ?2")
+    List<Produit> findByStatutAndClientId(int statut, long id);
+
+    @Query("select p from produit p where p.client.id = ?1 and p.statut = ?2")
+    List<Produit> findByClientIdAndStatut(long id, int statut);
+
 }
