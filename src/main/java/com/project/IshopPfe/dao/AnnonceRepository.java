@@ -11,4 +11,6 @@ public interface AnnonceRepository extends JpaRepository<Annonce,Long> {
 //    List<Annonce> findByClientId(long id);
 //    @Query("select a from annonce a where a.produit.id = ?1")
 //    List<Annonce> findByProduitId(long id);
+
+        List<Annonce> findByIdC(int idc);
 }

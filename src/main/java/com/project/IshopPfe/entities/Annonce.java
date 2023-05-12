@@ -30,8 +30,17 @@ public class Annonce {
         @OneToOne
         @JoinColumn(name = "produit_id",referencedColumnName = "id")
         private Produit produit;
+        private int idC;
 
-        @CreationTimestamp
+    public int getIdC() {
+        return idC;
+    }
+
+    public void setIdC(int idC) {
+        this.idC = idC;
+    }
+
+    @CreationTimestamp
         private Instant dateCreation;
         @UpdateTimestamp
         private Instant dateMaj;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "api/annonce")
 public class AnnonceController {
@@ -39,6 +39,10 @@ public class AnnonceController {
         return a;
     }
 
+    @GetMapping(value = "/getAnnoncer/{id}")
+    List<Annonce>getAnnoncer(@PathVariable int idc){
+        return service.getAnnoncer(idc);
+    }
 
 
 

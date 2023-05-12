@@ -35,9 +35,14 @@ public class AnnonceService {
          Annonce a= new Annonce();
          a.setNomAnnonce(p.nomAnnonce);
          a.setProduit(produit);
+         a.setIdC(p.idC);
 //         a.setDateCreation(p.Creation);
 //         a.setDateMaj(p.maj);
          return AnnonceRepo.save(a);
+     }
+
+     public List<Annonce>getAnnoncer(int idc){
+        return AnnonceRepo.findByIdC(idc);
      }
 
      public List<Annonce> getAll(){
