@@ -26,8 +26,8 @@ public class Annonce {
         this.id = id;
     }
 
-        @JsonIgnore
-        @OneToOne
+       @JsonIgnore
+        @OneToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "produit_id",referencedColumnName = "id")
         private Produit produit;
         private int idC;
@@ -40,7 +40,7 @@ public class Annonce {
         this.idC = idC;
     }
 
-    @CreationTimestamp
+        @CreationTimestamp
         private Instant dateCreation;
         @UpdateTimestamp
         private Instant dateMaj;

@@ -39,8 +39,8 @@ public class AnnonceController {
         return a;
     }
 
-    @GetMapping(value = "/getAnnoncer/{id}")
-    List<Annonce>getAnnoncer(@PathVariable int idc){
+    @GetMapping(value = "/getAnnoncer")
+    List<Annonce>getAnnoncer(@RequestParam("idc") int idc){
         return service.getAnnoncer(idc);
     }
 

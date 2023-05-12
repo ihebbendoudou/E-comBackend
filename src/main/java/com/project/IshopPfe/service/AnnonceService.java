@@ -10,6 +10,7 @@ import com.project.IshopPfe.entities.Client;
 import com.project.IshopPfe.entities.Produit;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 

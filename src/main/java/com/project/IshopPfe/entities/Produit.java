@@ -123,9 +123,8 @@ public class Produit implements Serializable {
     public void setSousCategory(sous_category sousCategory) {
         this.sousCategory = sousCategory;
     }
-
     @JsonIgnore
-    @OneToOne(mappedBy = "produit",fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "produit",fetch = FetchType.LAZY)
     private Annonce annonce;
 
     public Annonce getAnnonce() {
