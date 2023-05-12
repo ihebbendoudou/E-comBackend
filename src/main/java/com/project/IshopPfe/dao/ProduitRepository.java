@@ -29,4 +29,5 @@ public interface ProduitRepository extends CrudRepository<Produit,Long> {
     @Query("select count(p) from produit p where p.client.id = ?1 and p.statut = ?2")
     public Long countByClientIdAndStaut(Long id,int c);
 
+    List<Produit> findByClientId(Long id);
 }

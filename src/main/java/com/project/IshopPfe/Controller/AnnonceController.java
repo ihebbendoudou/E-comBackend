@@ -43,6 +43,10 @@ public class AnnonceController {
     List<Annonce>getAnnoncer(@RequestParam("idc") int idc){
         return service.getAnnoncer(idc);
     }
+    @GetMapping(value = "/getAllAnnonceORderByDate")
+    public List<Annonce> FindAllByOrderByDateCreationDesc(){
+        return service.FindAllByOrderByDateCreationDesc();
+    }
 
 
 

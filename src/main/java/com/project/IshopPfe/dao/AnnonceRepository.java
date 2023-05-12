@@ -9,9 +9,11 @@ import java.util.List;
 public interface AnnonceRepository extends JpaRepository<Annonce,Long> {
 //    @Query("select a from annonce a where a.client.id = ?1")
 //    List<Annonce> findByClientId(long id);
-//    @Query("select a from annonce a where a.produit.id = ?1")
-//    List<Annonce> findByProduitId(long id);
+    @Query("select a from annonce a where a.produit.id = ?1")
+    Annonce findByProduitId(long id);
 
         @Query("select a from annonce a where a.idC = ?1")
         List<Annonce> findByIdC(int idc);
+    @Query("select a from annonce a order by a.dateCreation DESC")
+    List<Annonce> findAllByOrderByDateCreationDesc();
 }
