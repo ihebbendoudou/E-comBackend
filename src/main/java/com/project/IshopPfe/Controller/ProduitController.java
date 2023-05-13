@@ -64,10 +64,8 @@ public class ProduitController {
     @PostMapping(value = "/upload-images")
    public ResponseEntity<String> uploadImages(@RequestParam("myFiles") List<MultipartFile> images) throws IOException {
         Produit produit= produitRepository.findById(getLastProductId()).get();
-        Long myId=getLastProductId();
+        Long myId=getLastProductId()+1;
         Files.createDirectories(Paths.get("src/main/resources/produits/"+myId));
-
-
 
         try {
             for (MultipartFile image : images) {

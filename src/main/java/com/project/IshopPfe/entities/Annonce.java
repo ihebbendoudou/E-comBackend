@@ -28,7 +28,7 @@ public class Annonce {
         this.id = id;
     }
 
-       @JsonIgnore
+       //@JsonIgnore
         @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE, orphanRemoval = true)
         @JoinColumn(name = "produit_id",referencedColumnName = "id")
         private Produit produit;

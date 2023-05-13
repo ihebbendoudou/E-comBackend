@@ -34,9 +34,7 @@ public class AnnonceController {
 
     @GetMapping(value = "/getAllAnnonce")
     public List<Annonce> getAllAno(){
-        List<Annonce> a= service.getAll();
-        System.out.println(a);
-        return a;
+        return service.getAll();
     }
 
     @GetMapping(value = "/getAnnoncer")
