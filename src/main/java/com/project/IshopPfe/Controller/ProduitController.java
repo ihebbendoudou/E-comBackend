@@ -140,5 +140,12 @@ public Annonce test(@PathVariable Long id){
 //        return produitService.getProductImages(productId)
 //    }
 
-
+    @GetMapping(value = "/FindByStatutAndPrixBetween")
+    public List<Produit>FindByStatutAndPrixBetween(@RequestParam("v1") double v1,@RequestParam("v2") double v2){
+        return produitService.FindByStatutAndPrixBetween(v1, v2);
+    }
+    @GetMapping(value = "/FindByStatutAndSousCategory")
+    public List<Produit>FindByStatutAndSousCategory(@RequestParam("v1") int v1){
+        return produitService.FindByStatutAndSousCategory(v1);
+    }
 }
