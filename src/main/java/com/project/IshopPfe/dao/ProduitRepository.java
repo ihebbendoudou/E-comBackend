@@ -34,4 +34,6 @@ public interface ProduitRepository extends CrudRepository<Produit,Long> {
     List<Produit> findByStatutAndPrixBetween(int s, double v1, double v2);
     @Query("select p from produit p where p.statut = ?1 and p.sousCategory.id = ?2")
     List<Produit>findByStatutAndSousCategory(int s, int v1);
+    @Query("select p from produit p where p.statut = ?1 and p.sousCategory.category.id = ?2")
+    List<Produit> findByStatutAndSousCategory_Category_Id(Long categoryId);
 }

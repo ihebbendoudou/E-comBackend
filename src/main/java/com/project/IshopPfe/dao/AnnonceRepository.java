@@ -1,6 +1,7 @@
 package com.project.IshopPfe.dao;
 
 import com.project.IshopPfe.entities.Annonce;
+import com.project.IshopPfe.entities.Produit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -16,4 +17,11 @@ public interface AnnonceRepository extends JpaRepository<Annonce,Long> {
         List<Annonce> findByIdC(int idc);
     @Query("select a from annonce a order by a.dateCreation DESC")
     List<Annonce> findAllByOrderByDateCreationDesc();
+    @Query("select a from annonce a where a.produit.prix between ?1 and ?2")
+    List<Annonce> findAllByProduit_PrixBetween(double v1, double v2);
+    @Query("select a from annonce a where a.produit.sousCategory.id = ?1")
+    List<Annonce>findAllByProduit_SousCategory(Long v1);
+    @Query("select a from annonce a where a.produit.sousCategory.category.id = ?1")
+    List<Annonce>findAllByProduit_SousCategory_Category_Id(Long v1);
+
 }
