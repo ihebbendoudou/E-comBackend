@@ -155,4 +155,16 @@ public Annonce test(@PathVariable Long id){
         public List<Annonce>getAnnonceByCategoryId(@RequestParam("v1") Long v1){
         return produitService.getProductsByCategoryId(v1);
     }
+
+    // find Annonce by sous cagtegory id Limit 4
+    @GetMapping(value = "/FindByAnnonceSousCategoryLimit")
+    public List<Annonce>FindByAnnonceSousCategoryLimit(@RequestParam("v1") Long v1) {
+        List<Annonce> a = produitService.FindByStatutAndSousCategory(v1);
+        if (a.size() >= 4) {
+            List<Annonce> resultList = produitService.FindByStatutAndSousCategory(v1).subList(0, 3);
+            return resultList;
+        } else {
+            return a;
+        }
+    }
 }

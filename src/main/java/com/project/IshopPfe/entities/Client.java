@@ -101,6 +101,7 @@ public  abstract  class Client {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Set<Commande> commandes=new HashSet<>();
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private Set<Produit> produits=new HashSet<>();
