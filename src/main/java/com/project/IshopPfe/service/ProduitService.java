@@ -126,6 +126,9 @@ public  List<ImageProduit> saveImage(MultipartFile[] imageFiles ) throws IOExcep
         return produitRepository.countByClientIdAndStaut(id,1);
     }
 
+    public List<Produit> getProduitByClientId(Long id) {
+        return produitRepository.findByClientId(id);
+    }
 }
 
 

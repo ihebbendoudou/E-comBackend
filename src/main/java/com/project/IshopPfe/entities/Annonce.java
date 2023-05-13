@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -26,8 +28,8 @@ public class Annonce {
         this.id = id;
     }
 
-       @JsonIgnore
-        @OneToOne(fetch = FetchType.LAZY)
+       //@JsonIgnore
+        @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE, orphanRemoval = true)
         @JoinColumn(name = "produit_id",referencedColumnName = "id")
         private Produit produit;
         private int idC;

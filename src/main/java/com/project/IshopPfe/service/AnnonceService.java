@@ -58,4 +58,8 @@ public class AnnonceService {
         return AnnonceRepo.save(a);
 
     }
+    public List<Annonce> FindAllByOrderByDateCreationDesc(){
+        return AnnonceRepo.findAllByOrderByDateCreationDesc();
+    }
+
 }
