@@ -129,6 +129,16 @@ public  List<ImageProduit> saveImage(MultipartFile[] imageFiles ) throws IOExcep
     public List<Produit> getProduitByClientId(Long id) {
         return produitRepository.findByClientId(id);
     }
+
+    ///Filter
+    public List<Produit>FindByStatutAndPrixBetween(double v1,double v2){
+        return     produitRepository.findByStatutAndPrixBetween(1,v1,v2);
+    }
+    public List<Produit>FindByStatutAndSousCategory(int v1){
+        return     produitRepository.findByStatutAndSousCategory(1,v1);
+    }
+
+
 }
 
 
