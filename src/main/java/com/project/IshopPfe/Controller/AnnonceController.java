@@ -46,7 +46,10 @@ public class AnnonceController {
         return service.FindAllByOrderByDateCreationDesc();
     }
 
-
+    @GetMapping(value = "/getAnnonceById/{id}")
+    public Annonce getAnnonceById(@PathVariable int id){
+        return service.getAnnonceById(id);
+    }
 
 //    @GetMapping(value = "api/annonce/getAll")
 //    public List<Annonce>getAll(){

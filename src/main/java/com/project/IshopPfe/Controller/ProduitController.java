@@ -139,13 +139,20 @@ public Annonce test(@PathVariable Long id){
 //    public ResponseEntity<byte[]> getProductImages(@PathVariable Long productId) {
 //        return produitService.getProductImages(productId)
 //    }
-
-    @GetMapping(value = "/FindByStatutAndPrixBetween")
-    public List<Produit>FindByStatutAndPrixBetween(@RequestParam("v1") double v1,@RequestParam("v2") double v2){
+        // find by Range of price
+    @GetMapping(value = "/FindByAnnoncePrixBetween")
+    public List<Annonce>FindByAnnoncePrixBetween(@RequestParam("v1") double v1,@RequestParam("v2") double v2){
         return produitService.FindByStatutAndPrixBetween(v1, v2);
     }
-    @GetMapping(value = "/FindByStatutAndSousCategory")
-    public List<Produit>FindByStatutAndSousCategory(@RequestParam("v1") int v1){
-        return produitService.FindByStatutAndSousCategory(v1);
+    // find Annonce by sous cagtegory id
+    @GetMapping(value = "/FindByAnnonceSousCategory")
+    public List<Annonce>FindByAnnonceSousCategory(@RequestParam("v1") Long v1){
+        return produitService.FindByStatutAndSousCategory(v1);}
+
+
+    //find Annonce by Category ID
+        @GetMapping(value = "/getAnnonceByCategoryId")
+        public List<Annonce>getAnnonceByCategoryId(@RequestParam("v1") Long v1){
+        return produitService.getProductsByCategoryId(v1);
     }
 }

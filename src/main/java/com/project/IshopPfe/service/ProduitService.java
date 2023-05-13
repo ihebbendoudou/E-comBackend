@@ -1,9 +1,6 @@
 package com.project.IshopPfe.service;
 
-import com.project.IshopPfe.dao.ClientRepository;
-import com.project.IshopPfe.dao.ImageProduitRepository;
-import com.project.IshopPfe.dao.ProduitRepository;
-import com.project.IshopPfe.dao.SousCategoryRepository;
+import com.project.IshopPfe.dao.*;
 import com.project.IshopPfe.dto.ProduitRequest;
 import com.project.IshopPfe.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +25,7 @@ public class ProduitService {
     ClientRepository clientRepository;
     @Autowired
     ImageProduitRepository imageProduitRepository;
+    @Autowired AnnonceRepository annonceRepository;
 
     public Long getLastProductId() {
         Produit lastProduct = produitRepository.findFirstByOrderByIdDesc();
@@ -131,13 +129,15 @@ public  List<ImageProduit> saveImage(MultipartFile[] imageFiles ) throws IOExcep
     }
 
     ///Filter
-    public List<Produit>FindByStatutAndPrixBetween(double v1,double v2){
-        return     produitRepository.findByStatutAndPrixBetween(1,v1,v2);
+    public List<Annonce>FindByStatutAndPrixBetween(double v1,double v2){
+        return     annonceRepository.findAllByProduit_PrixBetween(v1,v2);
     }
-    public List<Produit>FindByStatutAndSousCategory(int v1){
-        return     produitRepository.findByStatutAndSousCategory(1,v1);
+    public List<Annonce>FindByStatutAndSousCategory(Long v1){
+        return     annonceRepository.findAllByProduit_SousCategory(v1);
     }
-
+    public List<Annonce> getProductsByCategoryId(Long categoryId) {
+        return annonceRepository.findAllByProduit_SousCategory_Category_Id(categoryId);
+    }
 
 
 }

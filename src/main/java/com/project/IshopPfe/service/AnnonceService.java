@@ -62,4 +62,7 @@ public class AnnonceService {
         return AnnonceRepo.findAllByOrderByDateCreationDesc();
     }
 
+    public Annonce getAnnonceById(int id) {
+        return AnnonceRepo.findById((long) id).get();
+    }
 }
