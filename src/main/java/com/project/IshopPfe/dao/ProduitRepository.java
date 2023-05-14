@@ -29,6 +29,7 @@ public interface ProduitRepository extends CrudRepository<Produit,Long> {
     @Query("select count(p) from produit p where p.client.id = ?1 and p.statut = ?2")
     public Long countByClientIdAndStaut(Long id,int c);
 
+    @Query("select p from produit p where p.client.id = ?1")
     List<Produit> findByClientId(Long id);
     @Query("select p from produit p where p.statut = ?1 and p.prix between ?2 and ?3")
     List<Produit> findByStatutAndPrixBetween(int s, double v1, double v2);

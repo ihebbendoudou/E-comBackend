@@ -9,15 +9,24 @@ public class Internaute extends Client{
     public Internaute() {
     }
 
-    public Internaute(Long tel, String password, String login, String email, String nom, String prenom) {
+    public Internaute(Long tel, String password,String adresse, String login, String email, String nom, String prenom) {
         super(tel,password,login,email);
         this.nom = nom;
         this.prenom = prenom;
+        this.adresse=adresse;
 
     }
 
 
+    private String adresse;
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
 
     public String getNom() {
         return nom;

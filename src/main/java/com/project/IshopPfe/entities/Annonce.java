@@ -46,13 +46,11 @@ public class Annonce {
         private Instant dateCreation;
         @UpdateTimestamp
         private Instant dateMaj;
+        @Lob
+        @Column(name="nomAnnonce", length=1000)
         private String nomAnnonce;
-
     public Annonce() {
     }
-
-
-
     public Produit getProduit() {
         return produit;
     }
