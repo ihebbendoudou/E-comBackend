@@ -45,9 +45,18 @@ public class CouponService {
     }
 
     public Coupon update(CouponDto couponDto) {
-        Coupon c = couponRepository.findById(couponDto.id).get();
-        c.setValue(couponDto.value);
+        List<Produit> p = produitRepository.findByClientId(couponDto.idC);
+        Coupon c= couponRepository.findById(couponDto.id).get();
         c.setPourcentage(couponDto.pourcentage);
-        return  couponRepository.save(c);
+        c.setValue(couponDto.value);
+        Magasin m= magasinRepository.findById(couponDto.idC).get();
+        c.setMagasin(m);
+        for (Produit test : p)
+        {
+            test.setCoupon(c);
+            produitRepository.save(test);
+        }
+        return c;
+
     }
 }
