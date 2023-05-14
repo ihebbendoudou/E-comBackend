@@ -1,5 +1,6 @@
 package com.project.IshopPfe.dao;
 
+import com.project.IshopPfe.entities.Client;
 import com.project.IshopPfe.entities.Produit;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -37,4 +38,6 @@ public interface ProduitRepository extends CrudRepository<Produit,Long> {
     List<Produit>findByStatutAndSousCategory(int s, int v1);
     @Query("select p from produit p where p.statut = ?1 and p.sousCategory.category.id = ?2")
     List<Produit> findByStatutAndSousCategory_Category_Id(Long categoryId);
+
+
 }

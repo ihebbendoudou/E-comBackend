@@ -15,7 +15,6 @@ import java.util.List;
 @RequestMapping(value = "api/stelivraison")
 public class SteLivraisonController {
     @Autowired SteLivraisonService service;
-
     @GetMapping(value = "/getAllSteLivraison")
     List<SteLivraison> getAllSteLivraison(){
         return service.getAllSteLivraison();
