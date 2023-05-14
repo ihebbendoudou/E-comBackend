@@ -64,7 +64,7 @@ public class ProduitController {
     @PostMapping(value = "/upload-images")
    public ResponseEntity<String> uploadImages(@RequestParam("myFiles") List<MultipartFile> images) throws IOException {
         Produit produit= produitRepository.findById(getLastProductId()).get();
-        Long myId=getLastProductId()+1;
+        Long myId=getLastProductId();
         Files.createDirectories(Paths.get("src/main/resources/produits/"+myId));
 
         try {
@@ -161,7 +161,7 @@ public Annonce test(@PathVariable Long id){
     public List<Annonce>FindByAnnonceSousCategoryLimit(@RequestParam("v1") Long v1) {
         List<Annonce> a = produitService.FindByStatutAndSousCategory(v1);
         if (a.size() >= 4) {
-            List<Annonce> resultList = produitService.FindByStatutAndSousCategory(v1).subList(0, 3);
+            List<Annonce> resultList = produitService.FindByStatutAndSousCategory(v1).subList(0, 4);
             return resultList;
         } else {
             return a;
