@@ -27,6 +27,7 @@ public class CouponService {
     public List<Coupon> getAllbyClientId(Long id) {
     return couponRepository.findAllByMagasin_id(id);
     }
+
     public Coupon create(CouponDto couponDto) {
         Coupon c= new Coupon();
         c.setPourcentage(couponDto.pourcentage);
@@ -43,4 +44,10 @@ public class CouponService {
         return c;
     }
 
+    public Coupon update(CouponDto couponDto) {
+        Coupon c = couponRepository.findById(couponDto.id).get();
+        c.setValue(couponDto.value);
+        c.setPourcentage(couponDto.pourcentage);
+        return  couponRepository.save(c);
+    }
 }

@@ -20,4 +20,15 @@ public class CouponController {
     public Coupon create(@RequestBody CouponDto couponDto){
         return service.create(couponDto);
     }
+
+
+    @PutMapping(value = "/update")
+    public Coupon update(@RequestBody CouponDto couponDto){
+        return service.update(couponDto);
+    }
+    @GetMapping(value = "/getByIdClient/{id}")
+    public List<Coupon> getByIdClient(@PathVariable Long id){
+        return service.getAllbyClientId(id);
+    }
 }
+
