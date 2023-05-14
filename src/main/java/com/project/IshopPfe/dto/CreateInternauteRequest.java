@@ -5,7 +5,21 @@ public class CreateInternauteRequest {
     private String password;
     private String login;
     private String email;
+    private String adresse;
     private String nom;
+
+    public void setTel(long tel) {
+        this.tel = tel;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
     private String prenom;
     public CreateInternauteRequest(String email,String password){
         this.email=email;
@@ -14,9 +28,10 @@ public class CreateInternauteRequest {
 
     public CreateInternauteRequest(){}
 
-    public CreateInternauteRequest(long tel, String password, String login, String email, String nom, String prenom) {
+    public CreateInternauteRequest(long tel, String password, String adresse,String login, String email, String nom, String prenom) {
         this.tel = tel;
         this.password = password;
+        this.adresse=adresse;
         this.login = login;
         this.email = email;
         this.nom = nom;
