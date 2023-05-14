@@ -23,8 +23,10 @@ public class Produit implements Serializable {
     private long id;
     private String labelle;
     private double prix;
+    @Lob
+    @Column(name="description", length=1000)
     private String description;
-    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.EAGER)
     @NotFound(action= NotFoundAction.IGNORE)
     private Coupon coupon;
