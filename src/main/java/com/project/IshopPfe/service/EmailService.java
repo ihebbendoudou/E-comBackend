@@ -1,12 +1,21 @@
 package com.project.IshopPfe.service;
 
+import com.project.IshopPfe.dao.ClientRepository;
+import com.project.IshopPfe.dto.CommandeDto;
+import com.project.IshopPfe.entities.Coupon;
+import com.project.IshopPfe.entities.Produit;
+import com.project.IshopPfe.entities.SteLivraison;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class EmailService {
+
+
     private final JavaMailSender mailSender;
 
     @Autowired
@@ -22,4 +31,5 @@ public class EmailService {
 
         mailSender.send(message);
     }
+
 }

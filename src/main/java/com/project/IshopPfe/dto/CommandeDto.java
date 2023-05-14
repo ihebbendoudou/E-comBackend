@@ -2,7 +2,7 @@ package com.project.IshopPfe.dto;
 
 public class CommandeDto {
     public  Long idStl ;
-    public  Long   idProd ;
+    public  Long  idProd ;
     public  String nom;
     public  String prenom;
     public  String adresse;
