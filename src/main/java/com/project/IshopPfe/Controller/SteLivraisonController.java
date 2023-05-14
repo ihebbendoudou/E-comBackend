@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "api/stelivraison")
 public class SteLivraisonController {
     @Autowired SteLivraisonService service;
-
     @GetMapping(value = "/getAllSteLivraison")
     List<SteLivraison> getAllSteLivraison(){
         return service.getAllSteLivraison();

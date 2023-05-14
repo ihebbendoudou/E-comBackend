@@ -1,9 +1,6 @@
 package com.project.IshopPfe.service;
 
-import com.project.IshopPfe.dao.ClientRepository;
-import com.project.IshopPfe.dao.ImageProduitRepository;
-import com.project.IshopPfe.dao.ProduitRepository;
-import com.project.IshopPfe.dao.SousCategoryRepository;
+import com.project.IshopPfe.dao.*;
 import com.project.IshopPfe.dto.ProduitRequest;
 import com.project.IshopPfe.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +25,7 @@ public class ProduitService {
     ClientRepository clientRepository;
     @Autowired
     ImageProduitRepository imageProduitRepository;
+    @Autowired AnnonceRepository annonceRepository;
 
     public Long getLastProductId() {
         Produit lastProduct = produitRepository.findFirstByOrderByIdDesc();
@@ -116,7 +114,7 @@ public  List<ImageProduit> saveImage(MultipartFile[] imageFiles ) throws IOExcep
         return produitRepository.findByClientIdAndStatut(id,0);
     }
     public List<Produit> getProduitAnnoncer(Long id) {
-        return produitRepository.findByClientIdAndStatut(id,1);
+        return produitRepository.findByClientIdAndStatut1(id,1);
     }
     public long countProdByCLient(Long id){
         return  produitRepository.countByClientId(id);
@@ -125,6 +123,22 @@ public  List<ImageProduit> saveImage(MultipartFile[] imageFiles ) throws IOExcep
     public long countNonPublichByClient(Long id ){
         return produitRepository.countByClientIdAndStaut(id,1);
     }
+
+    public List<Produit> getProduitByClientId(Long id) {
+        return produitRepository.findByClientId(id);
+    }
+
+    ///Filter
+    public List<Annonce>FindByStatutAndPrixBetween(double v1,double v2){
+        return     annonceRepository.findAllByProduit_PrixBetween(v1,v2);
+    }
+    public List<Annonce>FindByStatutAndSousCategory(Long v1){
+        return     annonceRepository.findAllByProduit_SousCategory(v1);
+    }
+    public List<Annonce> getProductsByCategoryId(Long categoryId) {
+        return annonceRepository.findAllByProduit_SousCategory_Category_Id(categoryId);
+    }
+
 
 }
 

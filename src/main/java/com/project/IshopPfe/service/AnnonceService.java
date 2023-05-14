@@ -10,6 +10,7 @@ import com.project.IshopPfe.entities.Client;
 import com.project.IshopPfe.entities.Produit;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
@@ -35,9 +36,14 @@ public class AnnonceService {
          Annonce a= new Annonce();
          a.setNomAnnonce(p.nomAnnonce);
          a.setProduit(produit);
+         a.setIdC(p.idC);
 //         a.setDateCreation(p.Creation);
 //         a.setDateMaj(p.maj);
          return AnnonceRepo.save(a);
+     }
+
+     public List<Annonce>getAnnoncer(int idc){
+        return AnnonceRepo.findByIdC(idc);
      }
 
      public List<Annonce> getAll(){
@@ -51,5 +57,12 @@ public class AnnonceService {
 
         return AnnonceRepo.save(a);
 
+    }
+    public List<Annonce> FindAllByOrderByDateCreationDesc(){
+        return AnnonceRepo.findAllByOrderByDateCreationDesc();
+    }
+
+    public Annonce getAnnonceById(int id) {
+        return AnnonceRepo.findById((long) id).get();
     }
 }

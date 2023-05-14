@@ -28,6 +28,7 @@ public class InternautService {
         Internaute internaute = new Internaute(
                 request.getTel(),
                 request.getPassword(),
+                request.getAdresse(),
                 request.getLogin(),
                 request.getEmail(),
                 request.getNom(),
@@ -50,6 +51,7 @@ public class InternautService {
         Internaute internaute= internautRepository.findById(id).get();
             internaute.setNom(p.getNom());
             internaute.setPrenom(p.getPrenom());
+            internaute.setAdresse(p.getAdresse());
             internaute.setEmail(p.getEmail());
             internaute.setLogin(p.getLogin());
             internaute.setPassword(p.getPassword());

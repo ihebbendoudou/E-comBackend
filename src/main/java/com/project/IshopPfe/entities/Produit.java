@@ -6,6 +6,8 @@ import lombok.ToString;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
@@ -21,8 +23,10 @@ public class Produit implements Serializable {
     private long id;
     private String labelle;
     private double prix;
+    @Lob
+    @Column(name="description", length=1000)
     private String description;
-    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.EAGER)
     @NotFound(action= NotFoundAction.IGNORE)
     private Coupon coupon;
@@ -123,9 +127,8 @@ public class Produit implements Serializable {
     public void setSousCategory(sous_category sousCategory) {
         this.sousCategory = sousCategory;
     }
-
     @JsonIgnore
-    @OneToOne(mappedBy = "produit",fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "produit",fetch = FetchType.LAZY)
     private Annonce annonce;
 
     public Annonce getAnnonce() {

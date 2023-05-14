@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "api/annonce")
 public class AnnonceController {
@@ -34,13 +34,22 @@ public class AnnonceController {
 
     @GetMapping(value = "/getAllAnnonce")
     public List<Annonce> getAllAno(){
-        List<Annonce> a= service.getAll();
-        System.out.println(a);
-        return a;
+        return service.getAll();
     }
 
+    @GetMapping(value = "/getAnnoncer")
+    List<Annonce>getAnnoncer(@RequestParam("idc") int idc){
+        return service.getAnnoncer(idc);
+    }
+    @GetMapping(value = "/getAllAnnonceORderByDate")
+    public List<Annonce> FindAllByOrderByDateCreationDesc(){
+        return service.FindAllByOrderByDateCreationDesc();
+    }
 
-
+    @GetMapping(value = "/getAnnonceById/{id}")
+    public Annonce getAnnonceById(@PathVariable int id){
+        return service.getAnnonceById(id);
+    }
 
 //    @GetMapping(value = "api/annonce/getAll")
 //    public List<Annonce>getAll(){

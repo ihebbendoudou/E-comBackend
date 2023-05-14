@@ -1,5 +1,6 @@
 package com.project.IshopPfe.Controller;
 
+import com.project.IshopPfe.dao.AnnonceRepository;
 import com.project.IshopPfe.dao.ImageProduitRepository;
 import com.project.IshopPfe.dao.ProduitRepository;
 import com.project.IshopPfe.dto.ProduitRequest;
@@ -24,6 +25,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "api/produit")
 public class ProduitController {
+    @Autowired AnnonceRepository annonceRepository;
     @Autowired ProduitService produitService;
     @Autowired
     ImageProduitRepository imageProduitRepository;
@@ -39,7 +41,10 @@ public class ProduitController {
     public Produit getProduitById(@PathVariable Long id) {
         return produitService.getProduit(id);
     }
-
+    @GetMapping(value = "/getProduitByClientId/{id}")
+    public  List<Produit>getProduitByClientId(@PathVariable("id") Long id){
+            return produitService.getProduitByClientId(id);
+    }
     @PutMapping(value = "/udpate")
     public Produit udpate(@RequestBody ProduitRequest request) {
         return produitService.updateProduit(request);
@@ -61,8 +66,6 @@ public class ProduitController {
         Produit produit= produitRepository.findById(getLastProductId()).get();
         Long myId=getLastProductId();
         Files.createDirectories(Paths.get("src/main/resources/produits/"+myId));
-
-
 
         try {
             for (MultipartFile image : images) {
@@ -92,11 +95,21 @@ public class ProduitController {
             return null;
         }
     }
-
+@GetMapping(value = "/test/{id}")
+public Annonce test(@PathVariable Long id){
+        return annonceRepository.findByProduitId(id);
+}
 
     @DeleteMapping (value = "/delete/{id}")
     public  void delete(@PathVariable Long id){
-         produitService.deleteProduitById(id);
+        //         produitService.deleteProduitById(id);
+      Produit p=  produitRepository.findById(id).get();
+      if (p.getStatut()==0){
+          produitService.deleteProduitById(id);
+      }else{
+          Annonce a= annonceRepository.findByProduitId(id);
+          annonceRepository.deleteById(a.getId());
+      }
     }
     @GetMapping(value = "/getProduitByNom/{nom}")
     public Produit getProduitByNom(@PathVariable String  nom){
@@ -112,7 +125,6 @@ public class ProduitController {
     @GetMapping(value = "/getProduitAnnonce/{id}")
     public List<Produit> getProduitAnnoncer(@PathVariable Long id){
         return produitService.getProduitAnnoncer(id);
-
     }
     @GetMapping(value = "/CountByIdCLient/{id}")
     public Long countByClientID(@PathVariable("id") Long id){
@@ -127,6 +139,32 @@ public class ProduitController {
 //    public ResponseEntity<byte[]> getProductImages(@PathVariable Long productId) {
 //        return produitService.getProductImages(productId)
 //    }
+        // find by Range of price
+    @GetMapping(value = "/FindByAnnoncePrixBetween")
+    public List<Annonce>FindByAnnoncePrixBetween(@RequestParam("v1") double v1,@RequestParam("v2") double v2){
+        return produitService.FindByStatutAndPrixBetween(v1, v2);
+    }
+    // find Annonce by sous cagtegory id
+    @GetMapping(value = "/FindByAnnonceSousCategory")
+    public List<Annonce>FindByAnnonceSousCategory(@RequestParam("v1") Long v1){
+        return produitService.FindByStatutAndSousCategory(v1);}
 
 
+    //find Annonce by Category ID
+        @GetMapping(value = "/getAnnonceByCategoryId")
+        public List<Annonce>getAnnonceByCategoryId(@RequestParam("v1") Long v1){
+        return produitService.getProductsByCategoryId(v1);
+    }
+
+    // find Annonce by sous cagtegory id Limit 4
+    @GetMapping(value = "/FindByAnnonceSousCategoryLimit")
+    public List<Annonce>FindByAnnonceSousCategoryLimit(@RequestParam("v1") Long v1) {
+        List<Annonce> a = produitService.FindByStatutAndSousCategory(v1);
+        if (a.size() >= 4) {
+            List<Annonce> resultList = produitService.FindByStatutAndSousCategory(v1).subList(0, 4);
+            return resultList;
+        } else {
+            return a;
+        }
+    }
 }
