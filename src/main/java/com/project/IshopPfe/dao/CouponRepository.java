@@ -10,5 +10,5 @@ public interface CouponRepository extends JpaRepository<Coupon,Long> {
     @Query("select c from coupon c where c.magasin.id = ?1")
     List<Coupon> findAllByMagasin_id(Long id);
     @Query("select c from coupon c where c.value = ?1")
-    List<Coupon>findByValue(String value);
+    Coupon findByValue(String value);
 }

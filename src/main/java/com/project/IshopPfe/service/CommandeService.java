@@ -1,6 +1,7 @@
 package com.project.IshopPfe.service;
 
 import com.project.IshopPfe.dao.ClientRepository;
+import com.project.IshopPfe.dao.CouponRepository;
 import com.project.IshopPfe.dto.CommandeDto;
 import com.project.IshopPfe.dto.MailCorp;
 import com.project.IshopPfe.entities.Client;
@@ -17,29 +18,36 @@ public class CommandeService {
     @Autowired
     CouponService couponService;
     @Autowired
+    CouponRepository couponRepository;
+    @Autowired
     ProduitService produitService;
     @Autowired
     SteLivraisonService steLivraisonService;
     @Autowired
     EmailService emailService;
-
-    public void create(CommandeDto commandeDto){
-        Coupon c = (Coupon) couponService.couponRepository.
-                findByValue(commandeDto.coupon);
+    public void create(CommandeDto commandeDto) {
+        Coupon c = (Coupon) couponService.couponRepository.findByValue(commandeDto.coupon);
         Produit p = produitService.getProduit(commandeDto.idProd);
-        if(c!=null){
-            p.setPrix(p.getPrix()-((p.getPrix()*c.getPourcentage())/100));
+
+        if (c != null) {
+            p.setPrix(p.getPrix() - ((p.getPrix() * c.getPourcentage()) / 100));
         }
-        SteLivraison ste= steLivraisonService.getSteLivraisonById(commandeDto.idStl);
-        String text=" hello " + ste.getIntitule()+ "\n"+
-                " je vous informe que notre client : '"+commandeDto.prenom +" "+commandeDto.prenom +"" +
-                " a passe une commande le "+ new Date() +" composer de : \n"+
-                "titre produit : "+p.getLabelle()+
-                "prix : "+p.getPrix()+
-                "Client Info : \n "+
-                "Email : "+commandeDto.email+
-                "tel : "+ commandeDto.tel+
-                "adresse: "+commandeDto.adresse;
-        emailService.sendEmail(ste.getEmail(), "new commande", text);
+
+        SteLivraison ste = steLivraisonService.getSteLivraisonById(commandeDto.idStl);
+
+        String text = "Hello " + ste.getIntitule() + ",\n\n" +
+                "I would like to inform you that our client, '" + commandeDto.prenom + " " + commandeDto.prenom + "'," +
+                " has placed an order on " + new Date() + ". The order details are as follows:\n\n" +
+                "Product Title: " + p.getLabelle() + "\n" +
+                "Price: " + p.getPrix() + "\n\n" +
+                "Client Information:\n" +
+                "Email: " + commandeDto.email + "\n" +
+                "Tel: " + commandeDto.tel + "\n" +
+                "Address: " + commandeDto.adresse;
+
+        emailService.sendEmail(ste.getEmail(), "New Order", text);
     }
+
+
+
 }
