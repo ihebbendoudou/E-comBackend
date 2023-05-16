@@ -1,5 +1,6 @@
 package com.project.IshopPfe.Controller;
 import com.project.IshopPfe.dto.SousCategoryRequest;
+import com.project.IshopPfe.entities.Category;
 import com.project.IshopPfe.entities.sous_category;
 import com.project.IshopPfe.service.SousCategoryService;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +48,6 @@ public class SousCategoryController {
     }
 
     @DeleteMapping("value = /deleteSousCategory")
-
     void deleteSousCategory(@RequestBody sous_category sc){
         service.deleteSousCategory(sc);
     }
@@ -57,6 +57,11 @@ public class SousCategoryController {
            return "tfaskhet";
        }else
            return "ma tfaskhtesh";
+    }
+
+    @PutMapping(value = "/updateSousCategory/{id}")
+    public sous_category updateCategory(@RequestBody SousCategoryRequest sc,@PathVariable Long id) {
+        return service.updateSousCategoryById(id,sc);
     }
 
 }
