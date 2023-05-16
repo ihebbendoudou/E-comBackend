@@ -39,7 +39,7 @@ public class SousCategoryService {
         return sousCategoryRepository.findBynom_sous_category(st); }
 
     public sous_category createSousCategory(SousCategoryRequest request) {
-        Category category= categoryRepository.findById(request.getIdCategory()).get();
+        Category category= categoryRepository.findById(request.idCategory).get();
         sous_category ss = new sous_category();
         ss.setNom_sous_category(request.NomSousCategory);
         ss.setCategory(category);
@@ -66,4 +66,11 @@ public class SousCategoryService {
     public List<sous_category> getSousCategoryByCategoryIddd(Long id) {
         return sousCategoryRepository.getSousCategoryByCategoryIddd(id);
     }
+
+    public sous_category updateSousCategoryById(Long id , SousCategoryRequest sc){
+        sous_category sCateg = sousCategoryRepository.findById(id).get();
+        sCateg.setNom_sous_category(sc.NomSousCategory);
+        return sousCategoryRepository.save(sCateg);
+    }
+
 }
