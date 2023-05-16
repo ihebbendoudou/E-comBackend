@@ -87,12 +87,12 @@ public class ProduitController {
         }
     }
 
-    public Long getLastProductId() {
+    public long getLastProductId() {
         Produit lastProduct = produitRepository.findFirstByOrderByIdDesc();
         if (lastProduct != null) {
             return lastProduct.getId();
         } else {
-            return null;
+            return 1 ;
         }
     }
 @GetMapping(value = "/test/{id}")

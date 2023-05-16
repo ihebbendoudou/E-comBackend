@@ -1,6 +1,7 @@
 package com.project.IshopPfe.Controller;
 
 import com.project.IshopPfe.dao.ClientRepository;
+import com.project.IshopPfe.dao.InternautRepository;
 import com.project.IshopPfe.dto.ClientDto;
 import com.project.IshopPfe.entities.Client;
 import com.project.IshopPfe.entities.Internaute;
@@ -16,8 +17,8 @@ public class ClientController {
     ClientRepository ClRepo;
     @GetMapping(value = "/getClientById/{id}")
     public ClientDto getClientByID(@PathVariable Long id){
-        Client c=ClRepo.findById(id).get();
         ClientDto d=new ClientDto();
+        Client c=ClRepo.findById(id).get();
         if (c instanceof Magasin){
 
             d.id=c.getId();
@@ -30,7 +31,7 @@ public class ClientController {
 
             d.id=c.getId();
             d.Owner=((Internaute) c).getNom()+" "+((Internaute) c).getPrenom();
-            d.adresse=((Magasin) c).getAdresse();
+            d.adresse=((Internaute) c).getAdresse();
             d.email=c.getEmail();
             d.tel=c.getTel();
         }
